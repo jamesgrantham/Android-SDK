@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    repositories {
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+
+    defaultConfig {
+        applicationId "com.navisens.example"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    //compile(name:'motiondnaapi-0.1-20161213.002913-1', ext:'aar')
+    compile 'com.navisens:motiondnaapi:0.1-SNAPSHOT'
+
+    compile 'org.altbeacon:android-beacon-library:2.+'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+}
