@@ -29,6 +29,9 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
 dependencies {
 
     //compile(name:'motiondnaapi-0.1-20161213.002913-1', ext:'aar')

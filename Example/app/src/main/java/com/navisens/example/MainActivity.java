@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
         motionDnaApplication_.runMotionDna(s);
         motionDnaApplication_.setLocationAndHeadingGPSMag();
         motionDnaApplication_.setCallbackUpdateRateInMs(0);
-        motionDnaApplication_.setNetworkUpdateRateInMs(100);
         motionDnaApplication_.setMapCorrectionEnabled(true);
         motionDnaApplication_.setBinaryFileLoggingEnabled(true);
 //        motionDnaApplication_.setPowerMode(MotionDna.PowerConsumptionMode.LOW_CONSUMPTION);
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
                 recognizedMotion = "\nrecognized:S/" + SecondaryMotionModel.MOTION_NAMES[motion.secondaryMotion.ordinal()]
                         + "\nP/" + PrimaryMotionModel.MOTION_NAMES[motion.primaryMotion.ordinal()];
             }
-            textView1.setText(timeStamp + locationInfo + recognizedMotion);
+            textView1.setText( motionDnaApplication_.checkSDKVersion()+"\n"+timeStamp + locationInfo + recognizedMotion);
         }
     }
 
