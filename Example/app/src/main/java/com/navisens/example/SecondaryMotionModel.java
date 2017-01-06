@@ -11,8 +11,6 @@ public class SecondaryMotionModel {
             "FORWARD_IN_HAND_SWINGING",
             "FORWARD_IN_POCKET",
             "FORWARD_IN_CALL",
-            "FORWARD_IN_BAG",
-            "FORWARD_ON_ARM_BAND",
             "DWELLING",
             "JUMPING"
     };
