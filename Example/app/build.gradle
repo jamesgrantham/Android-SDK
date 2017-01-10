@@ -23,21 +23,31 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
+//configurations.all {
+//    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//}
+
 dependencies {
 
-    //compile(name:'motiondnaapi-0.1-20161213.002913-1', ext:'aar')
-    compile 'com.navisens:motiondnaapi:0.1-SNAPSHOT'
+    //put aar in ./app/libs for downaloded aar
+    //compile(name:'motiondnaapi-0.1-20170110.205718-2', ext:'aar')
+    //to get the latest SNAPSHOT version
+    compile group: "com.navisens", name: "motiondnaapi", version: "0.1-SNAPSHOT", changing: true
+    //compile 'com.navisens:motiondnaapi:0.1-SNAPSHOT'
+
+    //+++test google play service version conflicts
+    //compile 'com.google.android.gms:play-services:10.0.1'
 
     compile 'org.altbeacon:android-beacon-library:2.+'
+
+    //minSdkVersion is set to 20 or lower
+    compile 'com.android.support:multidex:1.0.1'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
