@@ -31,6 +31,11 @@ allprojects {
 ```
 2.Configure the module build.gradle to add two dependencies 
 ```
-compile group: "com.navisens", name: "motiondnaapi", version: "0.1-SNAPSHOT", changing: true
+
+dependencies {
+    compile group: "com.navisens", name: "motiondnaapi", version: "0.1-SNAPSHOT", changing: true
+    compile 'org.altbeacon:android-beacon-library:2.+'
+    ...
+}
 
 ```
