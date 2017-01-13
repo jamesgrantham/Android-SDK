@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     }
 
     //
+    long receiveCount;
+    long firstReceiveTimeMillis = System.currentTimeMillis();
     @Override
     public void receiveMotionDna(final MotionDna motionDna) {
         Log.d(LOG_TAG, "receiveMotionDna");
@@ -65,7 +67,14 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
                 recognizedMotion = "\nrecognized:S/" + SecondaryMotionModel.MOTION_NAMES[motion.secondaryMotion.ordinal()]
                         + "\nP/" + PrimaryMotionModel.MOTION_NAMES[motion.primaryMotion.ordinal()];
             }
-            textView1.setText( motionDnaApplication_.checkSDKVersion()+"\n"+timeStamp + locationInfo + recognizedMotion);
+
+            receiveCount++;
+            if(receiveCount==1){
+                firstReceiveTimeMillis=System.currentTimeMillis();
+            }
+            int ratePerSecond =(int)(receiveCount /((System.currentTimeMillis() - firstReceiveTimeMillis) /1000.0));
+
+            textView1.setText( motionDnaApplication_.checkSDKVersion()+"\n"+timeStamp + locationInfo + recognizedMotion+ "\nreceiveCount:" + receiveCount + " \n" + ratePerSecond + "/Second");
         }
     }
 
