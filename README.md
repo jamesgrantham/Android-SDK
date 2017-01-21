@@ -4,8 +4,7 @@ Put your developer key in ./Example/app/src/main/java/com/navisens/example/Motio
 ```
 private static final String DEVELOPER_KEY = "your developer key";
 ```
-for version 0.1-beta
-Put your developer key in ./Example/app/src/main/java/com/navisens/example/MainActivity.java
+For version 0.1-beta, put your developer key in ./Example/app/src/main/java/com/navisens/example/MainActivity.java
 ```
 private static final String DEVELOPER_KEY = "your developer key";
 ```
