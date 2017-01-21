@@ -36,10 +36,9 @@ android {
 dependencies {
 
     //put aar in ./app/libs for downaloded aar
-    //compile(name:'motiondnaapi-0.1-20170110.205718-2', ext:'aar')
+    //+++compile(name:'motiondnaapi-0.2-20170121.025103-3', ext:'aar')
     //to get the latest SNAPSHOT version
-    compile group: "com.navisens", name: "motiondnaapi", version: "0.1-SNAPSHOT", changing: true
-    //compile 'com.navisens:motiondnaapi:0.1-SNAPSHOT'
+    compile group: "com.navisens", name: "motiondnaapi", version: "0.2-SNAPSHOT", changing: true
 
     //+++test google play service version conflicts
     //compile 'com.google.android.gms:play-services:10.0.1'

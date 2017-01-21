@@ -1,6 +1,9 @@
 package com.navisens.example;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -22,34 +25,38 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements MotionDnaInterface {
 
-    private static final String DEVELOPER_KEY = "your developer key";
     private static final String LOG_TAG = "MainActivity";
     private static final int REQUEST_MDNA_PERMISSIONS = 1;
-    MotionDnaApplication motionDnaApplication_;
+    ;
 
     TextView textView1;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-
-    void runDna(String s) {
-        Log.d(LOG_TAG, "runDna");
-        motionDnaApplication_.runMotionDna(s);
-        motionDnaApplication_.setLocationAndHeadingGPSMag();
-        motionDnaApplication_.setCallbackUpdateRateInMs(0);
-        motionDnaApplication_.setMapCorrectionEnabled(true);
-        motionDnaApplication_.setBinaryFileLoggingEnabled(true);
-//        motionDnaApplication_.setPowerMode(MotionDna.PowerConsumptionMode.LOW_CONSUMPTION);
-        motionDnaApplication_.setExternalPositioningState(MotionDna.ExternalPositioningState.HIGH_ACCURACY);
-    }
-
     //
+    private MotionDnaClient motionDnaClient;
     long receiveCount;
     long firstReceiveTimeMillis = System.currentTimeMillis();
+
+    @Override
+    public Context getAppContext() {
+        return getApplicationContext();
+    }
+
+    @Override
+    public PackageManager getPkgManager() {
+        return getPackageManager();
+    }
+
     @Override
     public void receiveMotionDna(final MotionDna motionDna) {
-        Log.d(LOG_TAG, "receiveMotionDna");
 
-        if (motionDna.getID().equals(motionDnaApplication_.getDeviceID())) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            Log.d(LOG_TAG, "receiveMotionDna on UI thread");
+        } else {
+            Log.d(LOG_TAG, "receiveMotionDna NOT on UI thread");
+        }
+
+        if (motionDna.getID().equals(motionDnaClient.getMotionDnaApplication().getDeviceID())) {
             String timeStamp = simpleDateFormat.format(new Date());
             MotionDna.Location location = motionDna.getLocation();
             MotionDna.MotionStatistics globalStatistics = motionDna.getMotionStatistics();
@@ -63,18 +70,18 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
             final MotionDna.Motion motion = motionDna.getMotion();
 
             String recognizedMotion = null;
-            if (motion.secondaryMotion != null&&motion.primaryMotion!=null) {
+            if (motion.secondaryMotion != null && motion.primaryMotion != null) {
                 recognizedMotion = "\nrecognized:S/" + SecondaryMotionModel.MOTION_NAMES[motion.secondaryMotion.ordinal()]
                         + "\nP/" + PrimaryMotionModel.MOTION_NAMES[motion.primaryMotion.ordinal()];
             }
 
             receiveCount++;
-            if(receiveCount==1){
-                firstReceiveTimeMillis=System.currentTimeMillis();
+            if (receiveCount == 1) {
+                firstReceiveTimeMillis = System.currentTimeMillis();
             }
-            int ratePerSecond =(int)(receiveCount /((System.currentTimeMillis() - firstReceiveTimeMillis) /1000.0));
+            int ratePerSecond = (int) (receiveCount / ((System.currentTimeMillis() - firstReceiveTimeMillis) / 1000.0));
 
-            textView1.setText( motionDnaApplication_.checkSDKVersion()+"\n"+timeStamp + locationInfo + recognizedMotion+ "\nreceiveCount:" + receiveCount + " \n" + ratePerSecond + "/Second");
+            textView1.setText(motionDnaClient.getMotionDnaApplication().checkSDKVersion() + "\n" + timeStamp + locationInfo + recognizedMotion + "\nreceiveCount:" + receiveCount + " \n" + ratePerSecond + "/Second");
         }
     }
 
@@ -90,8 +97,10 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
         if (MotionDnaApplication.checkMotionDnaPermissions(this) == true) {
-            motionDnaApplication_ = new MotionDnaApplication(this, this);
-            runDna(DEVELOPER_KEY);
+            if (motionDnaClient == null) {
+                motionDnaClient = new MotionDnaClient();
+            }
+            motionDnaClient.bindDnaService(this);
         }
 
     }
@@ -101,7 +110,9 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     protected void onDestroy() {
         if (isFinishing()) {
             Log.d(LOG_TAG, "will call motionDnaApplication_.stop");
-            if (motionDnaApplication_ != null) motionDnaApplication_.stop();
+            if (motionDnaClient != null) {
+                motionDnaClient.unbindDnaService();
+            }
         }
         super.onDestroy();
     }
