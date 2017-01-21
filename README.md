@@ -1,9 +1,15 @@
 ### Quick Start
 
+Put your developer key in ./Example/app/src/main/java/com/navisens/example/MotionDnaClient.java
+```
+private static final String DEVELOPER_KEY = "your developer key";
+```
+for version 0.1-beta
 Put your developer key in ./Example/app/src/main/java/com/navisens/example/MainActivity.java
 ```
 private static final String DEVELOPER_KEY = "your developer key";
 ```
+
 Sync project with gradle and run it
 
 ### Documentation
@@ -30,6 +36,17 @@ allprojects {
 }
 ```
 2.Configure the module build.gradle to add two dependencies 
+
+```
+
+dependencies {
+    compile group: "com.navisens", name: "motiondnaapi", version: "0.2-SNAPSHOT", changing: true
+    compile 'org.altbeacon:android-beacon-library:2.+'
+    ...
+}
+```
+
+for version 0.1-beta
 ```
 
 dependencies {
@@ -37,5 +54,4 @@ dependencies {
     compile 'org.altbeacon:android-beacon-library:2.+'
     ...
 }
-
 ```
