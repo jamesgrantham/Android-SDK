@@ -59,6 +59,8 @@ This example works with power saving mode, works with doze mode in Android 6.0.1
 We will push a workaround soon for doze bug in Android 6.0 (https://code.google.com/p/android/issues/detail?id=193802)
 
 
+
+
 ### Change Log
 
 ####January 20, 2017
