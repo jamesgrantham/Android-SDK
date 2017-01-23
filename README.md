@@ -56,7 +56,7 @@ dependencies {
 ```
 ####3.Doze and power saving mode<br />
 This example works with power saving mode, works with doze mode in Android 6.0.1 and later.<br />
-We will push a workaround soon for doze bug in Android 6.0 (https://code.google.com/p/android/issues/detail?id=207700)
+We will push a workaround soon for doze bug in Android 6.0 (https://code.google.com/p/android/issues/detail?id=193802)
 
 
 ### Change Log
