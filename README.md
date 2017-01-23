@@ -58,7 +58,7 @@ dependencies {
 ### Change Log
 
 ####January 20, 2017
-Changed:
+Changed:<br />
 1.The MotionDnaApplication class' constructor has been changed to 
 ```
 public MotionDnaApplication(MotionDnaInterface motionDna)
