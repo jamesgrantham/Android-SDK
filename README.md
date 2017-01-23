@@ -54,3 +54,35 @@ dependencies {
     ...
 }
 ```
+
+### Change Log
+
+January 20, 2017
+Changed:
+1.The MotionDnaApplication class' constructor has been changed to 
+```
+public MotionDnaApplication(MotionDnaInterface motionDna)
+```
+2.Added two methods in MotionDnaInterface
+```
+    public Context getAppContext();
+    public PackageManager getPkgManager();
+```
+implementing the interface's two methods
+```
+@Override
+    public Context getAppContext() {
+        return getApplicationContext();
+}
+
+@Override
+    public PackageManager getPkgManager() {
+        return getPackageManager();
+}
+```
+
+
+
+
+
+
