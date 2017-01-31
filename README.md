@@ -60,11 +60,10 @@ We are going to push a workaround for doze bug in Android 6.0 (https://code.goog
 
 ####4.Without MotionDnaForegroundService
 
-MainActivity.java, replace
+replace MainActivity.java with
 ```
 package com.navisens.example;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
         motionDnaApplication.setBinaryFileLoggingEnabled(true);
         motionDnaApplication.setExternalPositioningState(MotionDna.ExternalPositioningState.HIGH_ACCURACY);
     }
-    
+
     @Override
     public void receiveMotionDna(final MotionDna motionDna) {
 
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
             Log.d(LOG_TAG, "receiveMotionDna NOT on UI thread");
         }
 
-        if (motionDna.getID().equals(motionDnaClient.getMotionDnaApplication().getDeviceID())) {
+        if (motionDna.getID().equals(motionDnaApplication.getDeviceID())) {
             String timeStamp = simpleDateFormat.format(new Date());
             MotionDna.Location location = motionDna.getLocation();
             MotionDna.MotionStatistics globalStatistics = motionDna.getMotionStatistics();
@@ -176,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
             if (motionDnaApplication == null) {
                 motionDnaApplication = new MotionDnaApplication(this);
             }
-           runDna(DEVELOPER_KEY);
+            runDna(DEVELOPER_KEY);
         }
     }
 
@@ -237,7 +236,6 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
         return super.onOptionsItemSelected(item);
     }
 }
-
 ```
 
 
