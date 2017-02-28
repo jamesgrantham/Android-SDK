@@ -48,6 +48,13 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     }
 
     @Override
+    public void errorOccurred(Exception exception, String errorDescription) {
+        Log.e(LOG_TAG, "errorDescription:" + errorDescription + " exception:" + exception.getLocalizedMessage());
+        Toast.makeText(MainActivity.this, "errorOccurred " + (errorDescription != null ? errorDescription : ""),
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void receiveMotionDna(final MotionDna motionDna) {
 
         if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -107,14 +114,14 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
 
     //
     @Override
-    protected void onDestroy() {
-        if (isFinishing()) {
-            Log.d(LOG_TAG, "will call motionDnaApplication_.stop");
-            if (motionDnaClient != null) {
-                motionDnaClient.unbindDnaService();
-            }
+    protected void onStop() {
+
+        super.onStop();
+
+        Log.d(LOG_TAG, "onStop(),will unbindDnaService");
+        if (motionDnaClient != null) {
+            motionDnaClient.unbindDnaService();
         }
-        super.onDestroy();
     }
 
     //

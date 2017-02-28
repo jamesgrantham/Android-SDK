@@ -98,12 +98,10 @@ public class MotionDnaForegroundService extends Service {
 
     @Override
     public void onDestroy() {
-
+        Log.d(this.getClass().getSimpleName(),"onDestroy");
         if (motionDnaApplication != null) {
             motionDnaApplication.stop();
         }
-
-        stopForeground(true);
 
         if (wakeLock.isHeld()) {
             wakeLock.release();
@@ -111,5 +109,8 @@ public class MotionDnaForegroundService extends Service {
         if (wifiLock.isHeld()) {
             wifiLock.release();
         }
+
+        stopForeground(true);
+        stopSelf();
     }
 }
