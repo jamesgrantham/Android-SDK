@@ -112,6 +112,13 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
         return getPackageManager();
     }
 
+    @Override
+    public void errorOccurred(Exception exception, String errorDescription) {
+        Log.e(LOG_TAG, "errorDescription:" + errorDescription + " exception:" + exception.getLocalizedMessage());
+        Toast.makeText(MainActivity.this, "errorOccurred " + (errorDescription != null ? errorDescription : ""),
+                Toast.LENGTH_LONG).show();
+    }
+    
     void runDna(String s) {
         Log.d(LOG_TAG, "runDna");
         motionDnaApplication.runMotionDna(s);
