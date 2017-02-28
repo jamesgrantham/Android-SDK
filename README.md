@@ -247,6 +247,18 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
 
 
 ### Change Log
+####February 28, 2017
+Changed:<br />
+1.Added errorOccurred method in MotionDnaInterface
+```
+public void errorOccurred(Exception exception, String errorDescription)
+```
+2.Added setLocalHeadingOffsetInDegrees and setCartesianOffsetInMeters in SDK api calls to set local and cartesian heading offsets
+```
+public void setLocalHeadingOffsetInDegrees(double hdg)
+public void setCartesianOffsetInMeters(double x, double y)
+```
+
 
 ####January 20, 2017
 Changed:<br />
