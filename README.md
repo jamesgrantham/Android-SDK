@@ -253,7 +253,7 @@ Changed:<br />
 ```
 public void errorOccurred(Exception exception, String errorDescription)
 ```
-2.Added setLocalHeadingOffsetInDegrees and setCartesianOffsetInMeters in SDK api calls to set local and cartesian heading offsets
+2.Added setLocalHeadingOffsetInDegrees and setCartesianOffsetInMeters in SDK API calls to set local and cartesian heading offsets
 ```
 public void setLocalHeadingOffsetInDegrees(double hdg)
 public void setCartesianOffsetInMeters(double x, double y)
