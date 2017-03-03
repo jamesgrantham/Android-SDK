@@ -55,6 +55,19 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     }
 
     @Override
+    public void reportSensorMissing(String msg)
+    {
+        Toast.makeText(MainActivity.this, "SensorMissing " + msg,
+                Toast.LENGTH_LONG).show();
+        Log.d(this.getClass().getSimpleName(),"SensorMissing " + msg);
+    }
+
+    @Override
+    public void reportSensorTiming(double dt, String msg){
+        Log.d(this.getClass().getSimpleName(),"SensorTiming dt:"+dt +" msg:"+msg);
+    }
+
+    @Override
     public void receiveMotionDna(final MotionDna motionDna) {
 
         if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -114,14 +127,13 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
 
     //
     @Override
-    protected void onStop() {
-
-        super.onStop();
-
+    protected void onDestroy() {
         Log.d(LOG_TAG, "onStop(),will unbindDnaService");
         if (motionDnaClient != null) {
             motionDnaClient.unbindDnaService();
         }
+
+        super.onDestroy();
     }
 
     //
