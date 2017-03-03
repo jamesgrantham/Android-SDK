@@ -119,6 +119,19 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
                 Toast.LENGTH_LONG).show();
     }
     
+    @Override
+    public void reportSensorMissing(String msg)
+    {
+        Toast.makeText(MainActivity.this, "SensorMissing " + msg,
+                Toast.LENGTH_LONG).show();
+        Log.d(this.getClass().getSimpleName(),"SensorMissing " + msg);
+    }
+
+    @Override
+    public void reportSensorTiming(double dt, String msg){
+        Log.d(this.getClass().getSimpleName(),"SensorTiming dt:"+dt +" msg:"+msg);
+    }
+    
     void runDna(String s) {
         Log.d(LOG_TAG, "runDna");
         motionDnaApplication.runMotionDna(s);
@@ -247,6 +260,14 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
 
 
 ### Change Log
+####March 02, 2017
+Changed:<br />
+1.Added two methods in MotionDnaInterface
+```
+public void reportSensorMissing(String msg);
+public void reportSensorTiming(double dt, String msg);
+```
+
 ####February 28, 2017
 Changed:<br />
 1.Added errorOccurred method in MotionDnaInterface
