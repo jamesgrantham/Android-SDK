@@ -260,6 +260,15 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
 
 
 ### Change Log
+
+####April 7, 2017
+foursquarekiller, improved efficiency, stability, and estimation.
+Changed:<br />
+1.Added AR mode flag. 
+2.Added methods to support cartesian transformations: resetLocalEstimation, setLocalHeadingOffset.
+
+
+
 ####March 02, 2017
 Changed:<br />
 1.Added two methods in MotionDnaInterface
@@ -267,12 +276,6 @@ Changed:<br />
 public void reportSensorMissing(String msg);
 public void reportSensorTiming(double dt, String msg);
 ```
-
-####April 7, 2017
-foursquarekiller, improved efficiency, stability, and estimation.
-Changed:<br />
-Added AR mode flag. 
-Added methods to support cartesian transformations: resetLocalEstimation, setLocalHeadingOffset.
 
 ####February 28, 2017
 Changed:<br />
