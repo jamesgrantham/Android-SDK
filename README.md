@@ -262,9 +262,9 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
 ### Change Log
 
 ####April 7, 2017<br />
-foursquarekiller, improved efficiency, stability, and estimation.
+foursquarekiller, improved efficiency, stability, and estimation.<br />
 Changed:<br />
-1.Added AR mode flag. 
+1.Added AR mode flag. <br />
 2.Added methods to support cartesian transformations: resetLocalEstimation, setLocalHeadingOffset.
 
 
