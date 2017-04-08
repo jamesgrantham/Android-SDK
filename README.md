@@ -268,6 +268,12 @@ public void reportSensorMissing(String msg);
 public void reportSensorTiming(double dt, String msg);
 ```
 
+####April 7, 2017
+foursquarekiller, improved efficiency, stability, and estimation.
+Changed:<br />
+Added AR mode flag. 
+Added methods to support cartesian transformations: resetLocalEstimation, setLocalHeadingOffset.
+
 ####February 28, 2017
 Changed:<br />
 1.Added errorOccurred method in MotionDnaInterface
