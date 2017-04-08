@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
 
 ### Change Log
 
-####April 7, 2017
+####April 7, 2017<br />
 foursquarekiller, improved efficiency, stability, and estimation.
 Changed:<br />
 1.Added AR mode flag. 
@@ -269,7 +269,7 @@ Changed:<br />
 
 
 
-####March 02, 2017
+####March 02, 2017<br />
 Changed:<br />
 1.Added two methods in MotionDnaInterface
 ```
@@ -277,7 +277,7 @@ public void reportSensorMissing(String msg);
 public void reportSensorTiming(double dt, String msg);
 ```
 
-####February 28, 2017
+####February 28, 2017<br />
 Changed:<br />
 1.Added errorOccurred method in MotionDnaInterface
 ```
@@ -290,7 +290,7 @@ public void setCartesianOffsetInMeters(double x, double y)
 ```
 
 
-####January 20, 2017
+####January 20, 2017<br />
 Changed:<br />
 1.The MotionDnaApplication class' constructor has been changed to 
 ```
