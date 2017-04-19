@@ -39,7 +39,7 @@ allprojects {
 ```
 
 dependencies {
-    compile group: "com.navisens", name: "motiondnaapi", version: "0.2-SNAPSHOT", changing: true
+    compile group: "com.navisens", name: "motiondnaapi", version: "0.3-SNAPSHOT", changing: true
     compile 'org.altbeacon:android-beacon-library:2.+'
     ...
 }
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     void runDna(String s) {
         Log.d(LOG_TAG, "runDna");
         motionDnaApplication.runMotionDna(s);
-        motionDnaApplication.setLocationAndHeadingGPSMag();
         motionDnaApplication.setCallbackUpdateRateInMs(0);
         motionDnaApplication.setMapCorrectionEnabled(true);
         motionDnaApplication.setBinaryFileLoggingEnabled(true);
