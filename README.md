@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
         return getPackageManager();
     }
 
- @Override
+    @Override
     public void reportError(MotionDna.ErrorCode errorCode, String s) {
         switch (errorCode) {
             case ERROR_AUTHENTICATION_FAILED:
