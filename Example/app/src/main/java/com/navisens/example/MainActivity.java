@@ -48,26 +48,6 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     }
 
     @Override
-    public void errorOccurred(Exception exception, String errorDescription) {
-        Log.e(LOG_TAG, "errorDescription:" + errorDescription + " exception:" + exception.getLocalizedMessage());
-        Toast.makeText(MainActivity.this, "errorOccurred " + (errorDescription != null ? errorDescription : ""),
-                Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void reportSensorMissing(String msg)
-    {
-        Toast.makeText(MainActivity.this, "SensorMissing " + msg,
-                Toast.LENGTH_LONG).show();
-        Log.d(this.getClass().getSimpleName(),"SensorMissing " + msg);
-    }
-
-    @Override
-    public void reportSensorTiming(double dt, String msg){
-        Log.d(this.getClass().getSimpleName(),"SensorTiming dt:"+dt +" msg:"+msg);
-    }
-
-    @Override
     public void receiveMotionDna(final MotionDna motionDna) {
 
         if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -106,12 +86,25 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     }
 
     @Override
-    public void failureToAuthenticate(String s) {
-        Log.e(LOG_TAG, "Authentication failed");
-        Toast.makeText(MainActivity.this, "Authentication failed",
-                Toast.LENGTH_LONG).show();
+    public void reportError(MotionDna.ErrorCode errorCode, String s) {
+        switch (errorCode) {
+            case ERROR_AUTHENTICATION_FAILED:
+                System.out.println("Error: authentication failed " + s); // Authentication to our servers failed. Email us for information as of why. This causes SDK to shut down.
+                break;
+            case ERROR_SDK_EXPIRED:
+                System.out.println("Error: SDK expired " + s); // SDK hasn't been updated in 1 year. Update your SDK. This causes SDK to shut down.
+                break;
+            case ERROR_PERMISSIONS:
+                System.out.println("Error: permissions not granted " + s); // Some permissions haven't been granted.
+                break;
+            case ERROR_SENSOR_MISSING:
+                System.out.println("Error: sensor missing " + s);// Will be or Accelerometer or Gyroscope, this helps handle incompatible phones. SDK will not work if this triggers.
+                break;
+            case ERROR_SENSOR_TIMING:
+                System.out.println("Error: sensor timing " + s);// Timing between sensor samples is inconsistent, this allows you to handle behaviors appropriately.
+                break;
+        }
     }
-
     //
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
