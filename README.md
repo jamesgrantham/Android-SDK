@@ -113,6 +113,16 @@ public class MainActivity extends AppCompatActivity implements MotionDnaInterfac
     }
 
     @Override
+    public void receiveNetworkData(MotionDna motionDna) {
+
+    }
+
+    @Override
+    public void receiveNetworkData(MotionDna.NetworkCode networkCode, Map<String, ? extends Object> map) {
+
+    }
+    
+    @Override
     public void reportError(MotionDna.ErrorCode errorCode, String s) {
         switch (errorCode) {
             case ERROR_AUTHENTICATION_FAILED:
