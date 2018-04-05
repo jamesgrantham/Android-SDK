@@ -1,3 +1,5 @@
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.navisens/motiondnaapi.svg?style=plastic)](https://oss.sonatype.org/content/groups/public/com/navisens/motiondnaapi/)
+
 ### Quick Start
 
 Put your developer key in ./Example/app/src/main/java/com/navisens/example/MotionDnaClient.java
