@@ -41,7 +41,7 @@ allprojects {
 ```
 
 dependencies {
-    compile group: "com.navisens", name: "motiondnaapi", version: "1.2.1-SNAPSHOT", changing: true
+    compile group: "com.navisens", name: "motiondnaapi", version: "1.2.2-SNAPSHOT", changing: true
     compile 'org.altbeacon:android-beacon-library:2.+'
     ...
 }
@@ -56,11 +56,11 @@ dependencies {
     ...
 }
 ```
-####3.Doze and power saving mode<br />
+#### 3.Doze and power saving mode<br />
 This example works with power saving mode, works with doze mode in Android 6.0.1 and later.<br />
 We are going to push a workaround for doze bug in Android 6.0 (https://code.google.com/p/android/issues/detail?id=193802)
 
-####4.Without MotionDnaForegroundService
+#### 4.Without MotionDnaForegroundService
 
 replace MainActivity.java with
 ```
